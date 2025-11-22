@@ -5,7 +5,7 @@ body{
     transition: .5s;
 }
 .box{
-    width: 80px;
+    width: 100px;
     height: 40px;
     border-radius: 20px;
     outline: 1px solid black;
@@ -22,5 +22,5 @@ body{
     left: 0;
 }
 .active{
-    transform: translateX(40px);
+    transform: translateX(60px);
 }
