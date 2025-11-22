@@ -1,0 +1,26 @@
+body.dark{
+    background-color: gray;
+}
+body{
+    transition: .5s;
+}
+.box{
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    outline: 1px solid black;
+    position: relative;
+}
+.check{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: black;
+    transition: 1s ease-in-out transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.active{
+    transform: translateX(40px);
+}
