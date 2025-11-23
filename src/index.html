@@ -10,9 +10,27 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="box">
+    <!-- <div class="box">
         <div class="check"></div>
-    </div>
+    </div> -->
+
+    <!-- При натисканні зберегти значення інпуту в localStorage. -->
+    <!-- <input id="nameInput" placeholder="Введіть ім'я">
+    <button id="saveBtn">Зберегти</button>
+    <button id="clearBtn">Очистити</button>
+    <textarea id="textArea" placeholder="Пишіть тут..."></textarea> -->
+
+
+
+
+    <form class="form-js">
+        <input class="input-name" name="name" type="text" placeholder="введіть ім'я">
+        <input class="input-email" name="email" type="email" placeholder="введіть email">
+        <input class="input-tel" name="tel" type="tel" placeholder="введіть tel">
+        <textarea class="coment-js" name="comment" placeholder="залиште коментар"></textarea>
+        <button class="btn-submit" type="submit">відправити</button>
+    </form>
+
     <script type="module" src="./app.js"></script>
 </body>
 </html>

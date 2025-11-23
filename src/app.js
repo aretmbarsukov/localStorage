@@ -8,43 +8,101 @@
 // console.log(JSON.parse(parsedData))
 
 
-const boxEl = document.querySelector(".box")
-const checkEl = document.querySelector(".check")
-const bodyEl = document.querySelector("body")
-const savedThema = localStorage.getItem('isActive')
+// const boxEl = document.querySelector(".box")
+// const checkEl = document.querySelector(".check")
+// const bodyEl = document.querySelector("body")
+// const savedThema = localStorage.getItem('isActive') || ""
 
-if (savedThema === "dark") {
-    checkEl.classList.toggle("active")
-    bodyEl.classList.add("dark")
-}else {
-        bodyEl.classList.remove("dark")
-        localStorage.setItem("isActive", "light")
+// if (savedThema === "dark") {
+//     checkEl.classList.toggle("active")
+//     bodyEl.classList.add("dark")
+// }else {
+//         bodyEl.classList.remove("dark")
+//         localStorage.setItem("isActive", "light")
+// }
+
+// boxEl.addEventListener('click', () => {
+//     checkEl.classList.toggle("active")
+//     if (checkEl.classList.contains('active')) {
+//         localStorage.setItem("isActive", "dark")
+//         bodyEl.classList.add("dark")
+//     } else {
+//         bodyEl.classList.remove("dark")
+//         localStorage.setItem("isActive", "light")
+//     }
+// })
+
+
+// Додати кнопку "Очистити", яка видалить значення з localStorage.
+// const saveName = document.querySelector('#nameInput')
+// const btn = document.querySelector('#saveBtn')
+// const clearBtn = document.getElementById("clearBtn");
+// const text = document.querySelector("#textArea")
+
+// const savedName = localStorage.getItem("userName") || ""
+// saveName.value = savedName
+
+// clearBtn.addEventListener("click", () => {
+//     localStorage.removeItem("userName")
+//     localStorage.removeItem("coment")
+// })
+
+// btn.addEventListener("click", () => {
+//     localStorage.setItem("userName", saveName.value)
+//     saveName.value = ""
+// })
+
+// const saveText = localStorage.getItem("coment") || ""
+// text.value = saveText
+
+// text.addEventListener("input", () => {
+//     localStorage.setItem("coment", text.value)
+    
+// })
+
+
+
+
+
+
+
+
+
+const form = document.querySelector(".form-js");
+
+const STORAGE_KEY = 'formData'
+
+function loadForm() {
+    const parseData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || ""
+    console.log(parseData)
+    if (!parseData) {
+        return
+    }
+    const {name, email, tel, comment} = parseData
+    form.elements.name.value = name
+    form.elements.email.value = email
+    form.elements.tel.value = tel
+    form.elements.comment.value = comment
+}
+function savedForm() {
+    const data = {
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        tel: form.elements.tel.value,
+        comment: form.elements.comment.value
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
 }
 
-boxEl.addEventListener('click', () => {
-    checkEl.classList.toggle("active")
-    if (checkEl.classList.contains('active')) {
-        localStorage.setItem("isActive", "dark")
-        bodyEl.classList.add("dark")
-    } else {
-        bodyEl.classList.remove("dark")
-        localStorage.setItem("isActive", "light")
-    }
+form.addEventListener('input', () => {
+    savedForm()
 })
 
-// const boxEl = document.querySelector(".box");
-// const checkEl = document.querySelector(".check");
-// const bodyEl = document.querySelector("body");
 
-// const theme = localStorage.getItem("isActive") ?? "light";
-// bodyEl.classList.toggle("dark", theme === "dark");
-// checkEl.classList.toggle("active", theme === "dark");
+form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    form.reset()
+    localStorage.removeItem(STORAGE_KEY)
+})
 
-// boxEl.addEventListener("click", () => {
-//   const isDark = !checkEl.classList.contains("active");
-
-//   checkEl.classList.toggle("active", isDark);
-//   bodyEl.classList.toggle("dark", isDark);
-
-//   localStorage.setItem("isActive", isDark ? "dark" : "light");
-// });
+loadForm()
