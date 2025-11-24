@@ -1,2 +1,0 @@
-let e=document.querySelector(".box"),t=document.querySelector(".check"),s=document.querySelector("body");"dark"===localStorage.getItem("isActive")?(t.classList.toggle("active"),s.classList.add("dark")):(s.classList.remove("dark"),localStorage.setItem("isActive","light")),e.addEventListener("click",()=>{t.classList.toggle("active"),t.classList.contains("active")?(localStorage.setItem("isActive","dark"),s.classList.add("dark")):(s.classList.remove("dark"),localStorage.setItem("isActive","light"))});
-//# sourceMappingURL=localStorage.f5deb009.js.map
