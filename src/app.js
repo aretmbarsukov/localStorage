@@ -181,12 +181,35 @@
 
 const form = document.querySelector(".form-js")
 const clearBtn = document.querySelector(".clear-btn")
+const contactsListEl = document.querySelector('.contact-list')
+const emptyMsgEl = document.querySelector('.contacts-empty')
 
 const STORAGE_KEY = "contacts"
 let contacts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
 
 function saveContacts() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts))
+}
+
+function renderContacts() {
+    if (!contactsListEl) return
+    contactsListEl.innerHTML = ''
+    if (!contacts || contacts.length === 0) {
+        if (emptyMsgEl) emptyMsgEl.style.display = 'block'
+        return
+    }
+    if (emptyMsgEl) emptyMsgEl.style.display = 'none'
+
+    contacts.forEach((c, idx) => {
+        const li = document.createElement('li')
+        li.innerHTML = `
+            <span>${c.name} ${c.surname} — ${c.email} — ${c.tel}</span>
+            <div>
+                <button class="delete-btn" data-index="${idx}">Видалити</button>
+            </div>
+        `
+        contactsListEl.appendChild(li)
+    })
 }
 
 form.addEventListener("submit", (e) => {
@@ -200,6 +223,7 @@ form.addEventListener("submit", (e) => {
     if (data.name && data.surname && data.email && data.tel) {
         contacts.push(data)
         saveContacts()
+        renderContacts()
         form.reset()
     }
 })
@@ -207,6 +231,24 @@ form.addEventListener("submit", (e) => {
 clearBtn.addEventListener("click", () => {
     contacts = []
     localStorage.removeItem(STORAGE_KEY)
+    renderContacts()
 })
 
 //0
+// Render saved contacts on load
+renderContacts()
+
+// Delete a contact using event delegation
+if (contactsListEl) {
+    contactsListEl.addEventListener('click', (e) => {
+        const el = e.target
+        if (el.matches('.delete-btn')) {
+            const idx = Number(el.dataset.index)
+            if (!Number.isNaN(idx)) {
+                contacts.splice(idx, 1)
+                saveContacts()
+                renderContacts()
+            }
+        }
+    })
+}

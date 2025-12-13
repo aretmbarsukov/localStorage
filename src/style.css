@@ -112,6 +112,13 @@ body{
     list-style: none;
 }
 
+.contacts-empty {
+    width: 400px;
+    margin: 8px auto 0;
+    color: #777;
+    text-align: center;
+}
+
 .contact-list li {
     background-color: antiquewhite;
     margin-bottom: 15px;
@@ -140,3 +147,8 @@ body{
     font-size: 14px;
 }
 
+h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
