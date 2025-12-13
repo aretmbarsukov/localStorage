@@ -1,0 +1,2 @@
+let e=document.querySelector(".form-js"),t=document.querySelector(".clear-btn"),l="contacts",a=JSON.parse(localStorage.getItem(l))||[];e.addEventListener("submit",t=>{t.preventDefault();let m={name:e.elements.name.value.trim(),surname:e.elements.surname.value.trim(),email:e.elements.email.value.trim(),tel:e.elements.tel.value.trim()};m.name&&m.surname&&m.email&&m.tel&&(a.push(m),localStorage.setItem(l,JSON.stringify(a)),e.reset())}),t.addEventListener("click",()=>{a=[],localStorage.removeItem(l)});
+//# sourceMappingURL=localStorage.4ace5c2b.js.map

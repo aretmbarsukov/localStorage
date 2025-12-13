@@ -10,7 +10,7 @@
   display: flex;
 }
 
-.input-name, .input-email, .input-tel {
+.input-name, .input-surname, .input-email, .input-tel {
   border: none;
   border-radius: 5px;
   outline: 1px solid gray;
@@ -19,17 +19,9 @@
   padding-left: 20px;
 }
 
-.coment-js {
-  resize: none;
-  border: none;
-  outline: 1px solid gray;
-  width: 100%;
-  height: 100px;
-  padding-left: 20px;
-}
-
-.btn-submit {
+.btn-submit, .btn-unsubmit {
   color: #fff;
+  cursor: pointer;
   background-color: #00f;
   border: none;
   border-radius: 5px;
@@ -38,5 +30,40 @@
   margin: 0 auto;
   font-size: 20px;
   display: block;
+}
+
+.contact-list {
+  width: 400px;
+  margin: 20px auto;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-list li {
+  background-color: #faebd7;
+  border-radius: 15px;
+  outline: 1px solid gray;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  font-size: 16px;
+  display: flex;
+}
+
+.contact-list span {
+  color: #333;
+  flex: 1;
+}
+
+.contact-list button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #00f;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
 }
 /*# sourceMappingURL=localStorage.2cdaf7bc.css.map */
