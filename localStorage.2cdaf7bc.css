@@ -39,6 +39,13 @@
   list-style: none;
 }
 
+.contacts-empty {
+  color: #777;
+  text-align: center;
+  width: 400px;
+  margin: 8px auto 0;
+}
+
 .contact-list li {
   background-color: #faebd7;
   border-radius: 15px;
@@ -65,5 +72,11 @@
   margin-left: 10px;
   padding: 6px 12px;
   font-size: 14px;
+}
+
+h2 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 /*# sourceMappingURL=localStorage.2cdaf7bc.css.map */

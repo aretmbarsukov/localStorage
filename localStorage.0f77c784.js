@@ -846,10 +846,31 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // })
 const form = document.querySelector(".form-js");
 const clearBtn = document.querySelector(".clear-btn");
+const contactsListEl = document.querySelector('.contact-list');
+const emptyMsgEl = document.querySelector('.contacts-empty');
 const STORAGE_KEY = "contacts";
 let contacts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 function saveContacts() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+}
+function renderContacts() {
+    if (!contactsListEl) return;
+    contactsListEl.innerHTML = '';
+    if (!contacts || contacts.length === 0) {
+        if (emptyMsgEl) emptyMsgEl.style.display = 'block';
+        return;
+    }
+    if (emptyMsgEl) emptyMsgEl.style.display = 'none';
+    contacts.forEach((c, idx)=>{
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span>${c.name} ${c.surname} \u{2014} ${c.email} \u{2014} ${c.tel}</span>
+            <div>
+                <button class="delete-btn" data-index="${idx}">\u{412}\u{438}\u{434}\u{430}\u{43B}\u{438}\u{442}\u{438}</button>
+            </div>
+        `;
+        contactsListEl.appendChild(li);
+    });
 }
 form.addEventListener("submit", (e)=>{
     e.preventDefault();
@@ -862,12 +883,29 @@ form.addEventListener("submit", (e)=>{
     if (data.name && data.surname && data.email && data.tel) {
         contacts.push(data);
         saveContacts();
+        renderContacts();
         form.reset();
     }
 });
 clearBtn.addEventListener("click", ()=>{
     contacts = [];
     localStorage.removeItem(STORAGE_KEY);
+    renderContacts();
+});
+//0
+// Render saved contacts on load
+renderContacts();
+// Delete a contact using event delegation
+if (contactsListEl) contactsListEl.addEventListener('click', (e)=>{
+    const el = e.target;
+    if (el.matches('.delete-btn')) {
+        const idx = Number(el.dataset.index);
+        if (!Number.isNaN(idx)) {
+            contacts.splice(idx, 1);
+            saveContacts();
+            renderContacts();
+        }
+    }
 });
 
 },{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire3a53", {})
